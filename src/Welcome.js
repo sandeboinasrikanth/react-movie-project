@@ -6,11 +6,13 @@ function Welcome(props){
   // console.log(props)
   return(
     <div>
-      <h4>Hello {props.name} </h4>
+      <hr />
+      <h1>Hello {props.name} </h1>
     </div>
   )
 }
 
+  // export const double
 const double =(n) =>  n*2;
 
 
