@@ -20,6 +20,9 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
+// import Button from '@mui/material/Button';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
 
 // console.log(double)
 
@@ -162,7 +165,7 @@ function App(){
           <Button  color="inherit" onClick={()=> navigate("/movies")}>
             Movies
           </Button>
-          <Button  color="inherit" onClick={()=> navigate("/add-movie")}>
+          <Button  color="inherit" onClick={()=> navigate("/movies/add")}>
             Add Movie
           </Button>
           
@@ -170,21 +173,23 @@ function App(){
       </AppBar>
 
 
-      <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path='/color-game' element={<AddColor/>} />
-        <Route path='/movies' element={<MovieList movieList ={movieList} setMovieList={setMovieList} />} />
-        <Route path='/add-movie' element={<AddMovie/>} />
-       
+      <section className="route-container">
+        <Routes>
+          <Route path='/' element={<Home/>} />
+          <Route path='/color-game' element={<AddColor/>} />
+          <Route path='/movies' element={<MovieList movieList ={movieList} setMovieList={setMovieList} />} />
+          <Route path='/movies/add' element={<AddMovie movieList ={movieList} setMovieList={setMovieList} />} />
+        
 
-        <Route path='/films' element={<Navigate replace to="/movies"/>} />
+          <Route path='/films' element={<Navigate replace to="/movies"/>} />
 
-        <Route path='/404' element={<NotFound/>} />
-        {/* redirecting * => 404 page */}
-        <Route path='/*' element={<Navigate replace to="/404" />} />
+          <Route path='/404' element={<NotFound/>} />
+          {/* redirecting * => 404 page */}
+          <Route path='/*' element={<Navigate replace to="/404" />} />
 
-        <Route path='/movies/:id' element={<MovieDetails movieList ={movieList} />} />
-      </Routes>
+          <Route path='/movies/:id' element={<MovieDetails movieList ={movieList} />} />
+        </Routes>
+      </section>
 
       
 
@@ -237,7 +242,11 @@ function MovieDetails({movieList}){
           <p style={styles} className="movie-rating">⭐{movie.rating}</p>
         </div>
         <p style={paraStyles} className="movie-summary">{movie.summary}</p>
-        <button onClick={() => navigate(-1)} >Back</button>
+        {/* <button onClick={() => navigate(-1)} >Back</button> */}
+        <Button onClick={() => navigate(-1)} variant="outlined" startIcon={<ArrowBackIosNewIcon />}>
+            Back
+        </Button>
+
       
       </div>
     </div>

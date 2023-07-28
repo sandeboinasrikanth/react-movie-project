@@ -8,6 +8,11 @@ import InfoIcon from '@mui/icons-material/Info';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+
 
 export function Movie({ movie , id }) {
   // conditional styling
@@ -30,28 +35,34 @@ export function Movie({ movie , id }) {
 
 
   return (
-    <div className="movie-container">
-      <img className="movie-poster" src={movie.poster} alt={movie.name} />
-      <div className="movie-specs">
-        <h2 className="movie-name">{movie.name}</h2>
-        <p style={styles} className="movie-rating">⭐{movie.rating}</p>
-      </div>
+   
+      <Card className="movie-container" style={{height:"min-content"}}>
+        <img className="movie-poster" src={movie.poster} alt={movie.name} />
+      <CardContent>
+        <div className="movie-specs">
+          <h2 className="movie-name">{movie.name}</h2>
+          <p style={styles} className="movie-rating">⭐{movie.rating}</p>
+        </div>
 
-      <IconButton color="primary" onClick={() => setShow(!show)}  aria-label="toggle-summary">
-         { show ? <ExpandLessIcon/> : <ExpandMoreIcon/> }
-      </IconButton>
-      
-      <IconButton color="primary" onClick={() => navigate(`/movies/${id}`)}  aria-label="movie-details">
-        <InfoIcon/>
-      </IconButton>
+        <IconButton color="primary" onClick={() => setShow(!show)}  aria-label="toggle-summary">
+          { show ? <ExpandLessIcon/> : <ExpandMoreIcon/> }
+        </IconButton>
+        
+        <IconButton color="primary" onClick={() => navigate(`/movies/${id}`)}  aria-label="movie-details">
+          <InfoIcon/>
+        </IconButton>
 
-      {/* conditional Styling */}
-      {/* <p style={paraStyles} className="movie-summary">{movie.summary}</p> */}
+        {/* conditional Styling */}
+        {/* <p style={paraStyles} className="movie-summary">{movie.summary}</p> */}
 
-      {/* conditional Rendering */}
-      { show ? <p style={paraStyles} className="movie-summary">{movie.summary}</p> : null}
+        {/* conditional Rendering */}
+        { show ? <p style={paraStyles} className="movie-summary">{movie.summary}</p> : null}
+      </CardContent>
 
+    <CardActions>
       <Counter />
-    </div>
+    </CardActions>
+     
+    </Card>
   );
 }
